@@ -28,7 +28,7 @@ class _New_UserState extends State<New_User> {
                 new Align(
                   alignment: Alignment.center,
                   child: new Padding(
-                      padding: new EdgeInsets.fromLTRB(10.0, 60.0, 1.0, 2.0),
+                      padding: new EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
                       child: TextField(
                         cursorColor: Colors.brown,
                         decoration: InputDecoration(
@@ -52,7 +52,7 @@ class _New_UserState extends State<New_User> {
                 new Align(
                   alignment: Alignment.center,
                   child: new Padding(
-                    padding: new EdgeInsets.fromLTRB(10.0, 60.0, 1.0, 2.0),
+                    padding: new EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
                     child: TextField(
                       cursorColor: Colors.brown,
                       decoration: InputDecoration(
@@ -76,7 +76,7 @@ class _New_UserState extends State<New_User> {
                 new Align(
                   alignment: Alignment.center,
                   child: new Padding(
-                    padding: new EdgeInsets.fromLTRB(10.0, 60.0, 1.0, 2.0),
+                    padding: new EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
                     child: TextField(
                       cursorColor: Colors.brown,
                       decoration: InputDecoration(
@@ -100,7 +100,7 @@ class _New_UserState extends State<New_User> {
                 new Align(
                   alignment: Alignment.center,
                   child: new Padding(
-                    padding: new EdgeInsets.fromLTRB(10.0, 60.0, 1.0, 2.0),
+                    padding: new EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
                     child: TextField(
                       cursorColor: Colors.brown,
                       decoration: InputDecoration(
@@ -124,7 +124,7 @@ class _New_UserState extends State<New_User> {
                 new Align(
                   alignment: Alignment.center,
                   child: new Padding(
-                    padding: new EdgeInsets.fromLTRB(10.0, 60.0, 1.0, 2.0),
+                    padding: new EdgeInsets.fromLTRB(2.0, 2.0, 2.0, 2.0),
                     child: TextField(
                       cursorColor: Colors.brown,
                       decoration: InputDecoration(
