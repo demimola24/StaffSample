@@ -1,4 +1,4 @@
-# three_app
+# Staff Application
 
 A Simple Staff Log Flutter application.
 
