@@ -6,7 +6,6 @@ import 'package:three_app/ui/background2.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:three_app/ui/itempreview.dart';
-import 'package:three_app/ui/new_user.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -182,6 +181,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final _width = MediaQuery.of(context).size.width;
+    final _height = MediaQuery.of(context).size.height;
+
     return new MaterialApp(
       title: 'My User App',
       theme: new ThemeData(
@@ -216,105 +218,164 @@ class _HomePageState extends State<HomePage> {
             future: fetchUsers(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return new ListView.builder(
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, index) {
-                      return new Padding(
-                        padding: EdgeInsets.all(7.0),
-                        child: new InkWell(
-                          onTap: () {
-                            //'${AdGroupsPics[i][index]}'),
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => new ItemPreview(name: "${snapshot.data[index].name}",userName: "${snapshot.data[index].username}",userEmail: "${snapshot.data[index].email}",website: "${snapshot.data[index].website}",phone: "${snapshot.data[index].phone}",)));
-                            print('Card 2 selected');
-                          },
-                          child: new Container(
-                            height: 150.0,
-                            decoration: new BoxDecoration(
-                              borderRadius: new BorderRadius.circular(15.0),
-                              color: Colors.black,
-                              boxShadow: [
-                                new BoxShadow(
-                                    color: Colors.black.withAlpha(80),
-                                    offset: const Offset(3.0, 10.0),
-                                    blurRadius: 15.0)
-                              ],
-                              image: new DecorationImage(
-                                image: new ExactAssetImage(
-                                    'lib/images/image_place.jpg'),
-                                fit: BoxFit.fitHeight,
-                              ),
-                            ),
-                            width: 220.0,
-                            child: new Stack(
-                              children: <Widget>[
-                                new Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Opacity(
-                                      opacity: 0.8,
-                                      child: new Container(
-                                          decoration: new BoxDecoration(
-                                              color: Colors.deepOrange,
-                                              borderRadius: new BorderRadius.only(
-                                                  bottomLeft: new Radius.circular(10.0),
-                                                  bottomRight: new Radius.circular(10.0))),
-                                          height: 33.0,
-                                          width: 350.0,
-                                          child: new Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              Padding(
-                                                padding: const EdgeInsets.all(1.0),
-                                                child: new Text(
-                                                  '${snapshot.data[index].name}',
-                                                  style: new TextStyle(color: Colors.white, fontSize: 14.0, fontWeight: FontWeight.bold),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.all(1.0),
-                                                child: new Text(
-                                                  '${snapshot.data[index].email}',
-                                                  style: new TextStyle(color: Colors.white,fontSize: 9.0),
-                                                ),
-                                              ),
-                                            ],
-                                          )),
-                                    )
-                                ),
-                              ],
+                return GridView.count(
+                  shrinkWrap: true,
+                  crossAxisCount: 2,
+                  controller: ScrollController(keepScrollOffset: true),
+                  children: List.generate(snapshot.data.length, (index) {
+                    EdgeInsets padding = index == 0?const EdgeInsets.only(
+                        left: 7.0, right: 7.0, top: 4.0, bottom: 30.0):const EdgeInsets.only(
+                        left: 7.0, right: 7.0, top: 4.0, bottom: 30.0);
+                    return new Padding(
+                      padding: padding,
+                      child: new InkWell(
+                        onTap: () {
+                          //'${AdGroupsPics[i][index]}'),
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => new ItemPreview(name: "${snapshot.data[index].name}",userName: "${snapshot.data[index].username}",userEmail: "${snapshot.data[index].email}",website: "${snapshot.data[index].website}",phone: "${snapshot.data[index].phone}",)));
+                          print('Card 2 selected');
+                        },
+                        child: new Container(
+                          decoration: new BoxDecoration(
+                            borderRadius: new BorderRadius.circular(15.0),
+                            color: Colors.black,
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Colors.black.withAlpha(80),
+                                  offset: const Offset(3.0, 10.0),
+                                  blurRadius: 15.0)
+                            ],
+                            image: new DecorationImage(
+                              image: new ExactAssetImage(
+                                  'lib/images/image_place.jpg'),
+                              fit: BoxFit.fitHeight,
                             ),
                           ),
+                          child: new Stack(
+                            children: <Widget>[
+                              new Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Opacity(
+                                    opacity: 0.8,
+                                    child: new Container(
+                                        decoration: new BoxDecoration(
+                                            color: Colors.deepOrange,
+                                            borderRadius: new BorderRadius.only(
+                                                bottomLeft: new Radius.circular(10.0),
+                                                bottomRight: new Radius.circular(10.0))),
+                                        height: 33.0,
+                                        width: (_width/2)-20,
+                                        child: new Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.all(1.0),
+                                              child: new Text(
+                                                '${snapshot.data[index].name}',
+                                                style: new TextStyle(color: Colors.white, fontSize: 14.0, fontWeight: FontWeight.bold),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(1.0),
+                                              child: new Text(
+                                                '${snapshot.data[index].email}',
+                                                style: new TextStyle(color: Colors.white,fontSize: 9.0),
+                                              ),
+                                            ),
+                                          ],
+                                        )),
+                                  )
+                              ),
+                            ],
+                          ),
                         ),
-                      );
-//                      return new Column(
-//                          crossAxisAlignment: CrossAxisAlignment.start,
-//                          children: <Widget>[
-//                            new Text(snapshot.data[index].name,
-//                                style: new TextStyle(
-//                                    fontWeight: FontWeight.bold)),
-//                            new Divider()
-//                          ]
-//                      );
-                    }
+                      ),
+                    );
+                  }),
                 );
+//                return new ListView.builder(
+//                    itemCount: snapshot.data.length,
+//                    itemBuilder: (context, index) {
+//                      return new Padding(
+//                        padding: EdgeInsets.all(7.0),
+//                        child: new InkWell(
+//                          onTap: () {
+//                            //'${AdGroupsPics[i][index]}'),
+//                            Navigator.push(context, MaterialPageRoute(builder: (context) => new ItemPreview(name: "${snapshot.data[index].name}",userName: "${snapshot.data[index].username}",userEmail: "${snapshot.data[index].email}",website: "${snapshot.data[index].website}",phone: "${snapshot.data[index].phone}",)));
+//                            print('Card 2 selected');
+//                          },
+//                          child: new Container(
+//                            height: 150.0,
+//                            decoration: new BoxDecoration(
+//                              borderRadius: new BorderRadius.circular(15.0),
+//                              color: Colors.black,
+//                              boxShadow: [
+//                                new BoxShadow(
+//                                    color: Colors.black.withAlpha(80),
+//                                    offset: const Offset(3.0, 10.0),
+//                                    blurRadius: 15.0)
+//                              ],
+//                              image: new DecorationImage(
+//                                image: new ExactAssetImage(
+//                                    'lib/images/image_place.jpg'),
+//                                fit: BoxFit.fitHeight,
+//                              ),
+//                            ),
+//                            width: 220.0,
+//                            child: new Stack(
+//                              children: <Widget>[
+//                                new Align(
+//                                    alignment: Alignment.bottomCenter,
+//                                    child: Opacity(
+//                                      opacity: 0.8,
+//                                      child: new Container(
+//                                          decoration: new BoxDecoration(
+//                                              color: Colors.deepOrange,
+//                                              borderRadius: new BorderRadius.only(
+//                                                  bottomLeft: new Radius.circular(10.0),
+//                                                  bottomRight: new Radius.circular(10.0))),
+//                                          height: 33.0,
+//                                          width: 350.0,
+//                                          child: new Column(
+//                                            mainAxisAlignment: MainAxisAlignment.center,
+//                                            children: <Widget>[
+//                                              Padding(
+//                                                padding: const EdgeInsets.all(1.0),
+//                                                child: new Text(
+//                                                  '${snapshot.data[index].name}',
+//                                                  style: new TextStyle(color: Colors.white, fontSize: 14.0, fontWeight: FontWeight.bold),
+//                                                ),
+//                                              ),
+//                                              Padding(
+//                                                padding: const EdgeInsets.all(1.0),
+//                                                child: new Text(
+//                                                  '${snapshot.data[index].email}',
+//                                                  style: new TextStyle(color: Colors.white,fontSize: 9.0),
+//                                                ),
+//                                              ),
+//                                            ],
+//                                          )),
+//                                    )
+//                                ),
+//                              ],
+//                            ),
+//                          ),
+//                        ),
+//                      );
+//
+//                    }
+//                );
               } else if (snapshot.hasError) {
                 return new Text("${snapshot.error}");
               }
 
               // By default, show a loading spinner
-              return new CircularProgressIndicator();
+              return new Align(
+                alignment: Alignment.center,
+                child:   CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.red
+                ),),
+              );
             },
           ),
-        ),
-        floatingActionButton: new FloatingActionButton(
-            tooltip: "Add User",
-            backgroundColor: Colors.white,
-            child: new ListTile(
-                title: new Icon(Icons.add,color: Colors.brown,)
-            ),
-            onPressed:(){
-              Navigator.of(context).push(new MaterialPageRoute(builder:
-              (BuildContext context) => new New_User()));
-            }
         ),
       ),
     );

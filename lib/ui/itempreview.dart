@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:three_app/ui/background2.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ItemPreview extends StatefulWidget {
 
@@ -286,13 +287,12 @@ class _ItemPreviewState extends State<ItemPreview> {
                               child: InkWell(
                                 child: Center(
                                   child:_image == null
-                                      ? new Text('B',
-                                    style: new TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.w500),
-                                  )
-                                      : Image.file(_image)
-                                  ,
+                                      ? new Text('S')
+                                      : new CircleAvatar(backgroundImage: new FileImage(_image), radius: 200.0,),
                                 ),
-                                //onTap: ,
+                                onTap: (){
+                                  getImage();
+                                },
                               )
                           ),
                         ],
@@ -331,11 +331,11 @@ class _ItemPreviewState extends State<ItemPreview> {
     // Navigator.pop(context);
   }
 
-//  Future getImage() async {
-//    var image = await ImagePicker.pickImage(source: ImageSource.camera);
-//
-//    setState(() {
-//      _image = image;
-//    });
-//  }
+  Future getImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _image = image;
+    });
+  }
 }
