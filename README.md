@@ -1,6 +1,17 @@
 # three_app
 
-A new Flutter application.
+A Simple Staff Log Flutter application.
+
+- Consuming APIs
+- Implements FutureBuilder and ImagePicker (profile)
+- Login interface courtesy of https://startflutter.com/themes/438/
+
+
+![Screenshot](Screenshot_20190324-030540.png)
+![Screenshot](Screenshot_20190324-030549.png)
+![Screenshot](Screenshot_20190324-030725.png)
+
+
 
 ## Getting Started
 
